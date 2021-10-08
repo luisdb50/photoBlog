@@ -9,7 +9,7 @@ export default function Header(props) {
 
     return(
         <header className="content_header">
-            <Navbar expand="sm" className="nav_content">
+            <Navbar fixed="top" expand="sm" className="nav_content">
                 <Navbar.Brand href="#home">
                     <img
                         alt="logo"
