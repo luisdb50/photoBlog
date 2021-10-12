@@ -14,14 +14,34 @@ export default class Content extends React.Component{
     constructor(props){
         super(props);
         this.state = {
-
+            resultRequest: ""
         }
     }
 
+    componentDidMount(){
+        //window.addEventListener('scroll', this.handleScroll);
+
+        fetch('https://jsonplaceholder.typicode.com/users/1/todos')
+            .then(response => response.json())
+            .then(json => this.setState({resultRequest: json}))
+            .catch(error => console.log(error));
+    }
+
+    componentWillUnmount(){
+        window.removeEventListener('scroll', this.handleScroll);
+    }
+
+    handleScroll(e){
+        alert("scroll");
+    }
+
     render(){
+        let dato = this.state.resultRequest[0];
+        console.log(dato.id)
+        
         return(
             <Container fluid className="content_body">
-                <Row className="body_about">
+                <Row className="body_about" id="about">
                     <img className="bg_about_img" src={about_img} alt="about"/>
                     <Col className="col_flex" xs={12} sm={11} md={11}>
                         <Col sm={6} md={5} className="cont_about">
@@ -29,14 +49,12 @@ export default class Content extends React.Component{
                                 <img className="img_style2" src={gallery_img} alt="galeria"/>
                             </div>
                             <p className="text_about">
-                                Guarda tus imagenes favoritas de una manera facil y eficiente
-                                con PhotoBlog. Aqui podras tener tu propia galeria con las imagenes
-                                que jamas quieras perder en todos tus dispositivos.
+                                
                             </p>
                         </Col>                        
                     </Col>
                 </Row>
-                <Row className="body_features">
+                <Row className="body_features" id="features">
                 <img className="bg_fea_img" src={fea_img} alt="about"/>
                     <Col sm={6} lg={3}>
                         <img className="img_style3" src={archive_img} alt="archivo" />

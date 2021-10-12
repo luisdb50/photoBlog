@@ -4,7 +4,7 @@
 }
 
 .content_main{
-        
+    
 }
 
 /* HEADER */
@@ -43,6 +43,7 @@
 .content_body{
     padding: 0 !important;
     margin-top: 63px;
+    
 }
 
 .body_about{
@@ -149,4 +150,9 @@
 
 .snpadd{
     padding: 0 !important;
+}
+
+::-webkit-scrollbar{
+    display: none;
+    scroll-behavior: smooth;
 }
