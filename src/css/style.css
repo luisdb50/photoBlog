@@ -96,6 +96,24 @@
     justify-content: center;
 }
 
+.cont_emergent_active{
+    background-color: rgba(0, 0, 0, 0.507);
+    height: 100vh;
+    position: absolute;
+    top: 0;
+    z-index: 100;
+    display: flex;
+    justify-content: center;
+}
+
+.cont_emergent_inactive{
+    width: 0px;
+}
+
+.cont_figure_inactive{
+    
+}
+
 .text_about{
     width: 100%;
     text-align: justify;
@@ -107,6 +125,10 @@
     text-align: justify;
     color: #000000;
     padding: 0px 10px;
+}
+
+.text_load{
+    padding: 10px;
 }
 
 .title_fea{
@@ -136,6 +158,52 @@
     margin-top: 10px;
     height: calc(100vh - 64px);
 }
+
+.div_emergent{
+    padding: 10px;
+    align-self: center;
+    align-items: center;
+    border-radius: 10px;
+    box-shadow: 2px 2px 15px #000;
+    background-color: rgb(255, 255, 255);
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.figure{
+    width: 100px;
+    height: 100px;
+    background-color: rgb(195, 105, 247);
+    clip-path: polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%);
+    -webkit-animation: 3s rotate linear infinite;
+    animation: 3s rotate linear infinite;
+    -webkit-transform-origin: 50% 50%;
+    transform-origin: 50% 50%;
+    display: flex !important;
+    justify-content: center;
+}
+
+.figure2{
+    width: 70%;
+    height: 70%;
+    background-color: rgb(144, 17, 218);
+    clip-path: polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%);
+    align-self: center;
+    display: flex;
+    justify-content: center;
+}
+
+.figure3{
+    width: 50%;
+    height: 50%;
+    background-color: rgb(255, 255, 255);
+    clip-path: circle(50% at 50% 50%);
+    align-self: center;
+}
+
+@keyframes rotate {from {transform: rotate(0deg);}
+    to {transform: rotate(360deg);}}
 
 
 /* FOOTER */
