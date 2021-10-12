@@ -96,7 +96,7 @@
     justify-content: center;
 }
 
-.cont_emergent_active{
+.cont_emergent{
     background-color: rgba(0, 0, 0, 0.507);
     height: 100vh;
     position: absolute;
@@ -104,10 +104,6 @@
     z-index: 100;
     display: flex;
     justify-content: center;
-}
-
-.cont_emergent_inactive{
-    width: 0px;
 }
 
 .cont_figure_inactive{

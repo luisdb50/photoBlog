@@ -16,7 +16,7 @@ export default class Content extends React.Component{
         this.state = {
             resultRequest: "",
             load: false,
-            active: "cont_emergent_inactive",
+            active: false
         }
 
         this.handleRequest = this.handleRequest.bind(this);
@@ -38,7 +38,7 @@ export default class Content extends React.Component{
     }
 
     handleRequest(){
-        this.setState({active: "cont_emergent_active"});
+        this.setState({active: true});
         fetch('https://jsonplaceholder.typicode.com/users/1/todos')
             .then(response => response.json())
             .then(json => this.setState({resultRequest: json, load: true}))
@@ -46,7 +46,7 @@ export default class Content extends React.Component{
     }
 
     handleClick(){
-        this.setState({active: "cont_emergent_inactive"});
+        this.setState({active: false});
     }
 
     loading(){
@@ -85,6 +85,16 @@ export default class Content extends React.Component{
                     {result}
                 </tbody>
             </Table>
+        );
+    }
+
+    viewUsers(){
+        return(
+            <Container onClick={this.handleClick} fluid className="cont_emergent">
+                <div className="div_emergent">
+                    {this.state.load === false ? this.loading() : this.result()}
+                </div>
+            </Container>
         );
     }
 
@@ -149,11 +159,7 @@ export default class Content extends React.Component{
                         </Col>
                     </Row>
                 </Container>
-                <Container onClick={this.handleClick} fluid className={this.state.active}>
-                    <div className="div_emergent">
-                     {this.state.load === false ? this.loading() : this.result()}
-                    </div>
-                </Container>
+                {this.state.active ? this.viewUsers() : <div></div>}
             </div>
             
         );
