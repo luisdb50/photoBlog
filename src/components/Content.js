@@ -6,8 +6,12 @@ import format_img from "../img/format.png";
 import view_img from "../img/view.png";
 import fea_img from "../img/features.jpg";
 
+import { FileUpload } from "./FileUpload";
+
 import React from "react";
 import { Col, Container, Row, Table } from "react-bootstrap";
+import { GoogleAuthProvider, getAuth, signInWithPopup, signOut } from "firebase/auth";
+import { onAuthStateChanged } from "firebase/auth";
 
 export default class Content extends React.Component{
     
@@ -16,17 +20,23 @@ export default class Content extends React.Component{
         this.state = {
             resultRequest: "",
             load: false,
-            active: false
+            active: false,
+            user: null
         }
 
         this.handleRequest = this.handleRequest.bind(this);
         this.handleClick = this.handleClick.bind(this);
+        this.handleAuth = this.handleAuth.bind(this);
+        this.handleLogout = this.handleLogout.bind(this);
     }
 
     componentDidMount(){
         //window.addEventListener('scroll', this.handleScroll);
 
-        
+        const auth = getAuth();
+        onAuthStateChanged(auth, user => {
+            this.setState({ user });
+        });
     }
 
     componentWillUnmount(){
@@ -47,6 +57,39 @@ export default class Content extends React.Component{
 
     handleClick(){
         this.setState({active: false});
+    }
+
+    handleAuth(){
+        const provider = new GoogleAuthProvider();
+
+        const auth = getAuth();
+        signInWithPopup(auth, provider)
+            .then(result => console.log(result.user.email + " ha iniciado sesion"))
+            .catch(error => console.log("Error " + error))
+    }
+
+    handleLogout(){
+        const auth = getAuth();
+        signOut(auth)
+            .then(result => console.log(result.user.email + " ha salido"))
+            .catch(error => console.log("Error " + error))
+    }
+
+    renderLoginButton(){
+            // Si el usuario esta logueado
+        if(this.state.user){
+            return(
+                <div>
+                    <img src={this.state.user.photoURL} alt={this.state.user.displayName}/>
+                    <p>Hola {this.state.user.displayName}</p>
+                    <button onClick={this.handleLogout}>Salir</button>
+                </div>
+            );
+        } else {
+            return(
+                <button onClick={this.handleAuth}>Login con Google</button>
+            );
+        }
     }
 
     loading(){
@@ -70,7 +113,7 @@ export default class Content extends React.Component{
                 <td>{value.title}</td>
                 <td>{value.completed.toString()}</td>
             </tr>
-        )
+        );
 
         return(
             <Table striped hover>
@@ -102,7 +145,7 @@ export default class Content extends React.Component{
         
         return(
             <div>
-                <Container fluid className="content_body">
+                <Container fluid className="content_body" id="home">
                     <Row className="body_about" id="about">
                         <img className="bg_about_img" src={about_img} alt="about"/>
                         <Col className="col_flex" xs={12} sm={11} md={11}>
@@ -160,6 +203,12 @@ export default class Content extends React.Component{
                     </Row>
                 </Container>
                 {this.state.active ? this.viewUsers() : <div></div>}
+                <Container fluid className="cont_login">
+                    {this.renderLoginButton()}
+                </Container>
+                <Container>
+                    <FileUpload />
+                </Container>
             </div>
             
         );
