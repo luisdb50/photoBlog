@@ -24,7 +24,7 @@ export default function Header(props) {
                 
                 <Navbar.Collapse className="justify-content-end">
                     <Nav className="nav_links">
-                        <Nav.Link href="#home">Registrate</Nav.Link>
+                        <Nav.Link href="#home">Acceder</Nav.Link>
                         <Nav.Link href="#home">Inicio</Nav.Link>
                         <Nav.Link href="#link">Galeria</Nav.Link>
                     </Nav>

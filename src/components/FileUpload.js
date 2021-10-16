@@ -1,5 +1,5 @@
 import React from "react";
-import { getStorage, ref, uploadBytes, uploadBytesResumable } from "firebase/storage";
+import { getStorage, ref, uploadBytesResumable } from "firebase/storage";
 
 export class FileUpload extends React.Component{
     constructor(){

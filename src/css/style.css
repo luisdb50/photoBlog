@@ -51,7 +51,7 @@
 }
 
 .body_features{
-    
+    justify-content: center;
 }
 
 .bg_about_img{
@@ -63,10 +63,11 @@
 
 .bg_fea_img{
     width: 100%;
-    right: 0;
-    position: absolute;
     height: 50vh;
     align-self: flex-end;
+    position: relative;
+    top: -80px;
+    z-index: 10;
 }
 
 .img_style2{
@@ -79,16 +80,24 @@
     margin: 20px;
 }
 
+.img_prof{
+    width: 20vw;
+    border-radius: 360px;
+    border: solid rgb(143, 143, 143);
+}
+
 .cont_about{
     position: relative;
-    
     display: flex;
     flex-direction: column;
-    padding: 40px 20px;
+    padding: 10vh 20px;
     background-color: rgb(255, 255, 255);
-    border-radius: 10px;
-    box-shadow: 2px 2px 10px #000;
+    clip-path: polygon(100% 0, 100% 100%, 50% 82%, 0 100%, 0 0);
+    justify-content: flex-start;
     z-index: 6;
+    height: 90%;
+    border-right: 10px solid #a730df;
+    border-left: 10px solid #a730df;
 }
 
 .cont_img_about{
@@ -104,6 +113,10 @@
     z-index: 100;
     display: flex;
     justify-content: center;
+}
+
+.cont_login{
+    
 }
 
 .cont_figure_inactive{
@@ -132,6 +145,12 @@
     color: #4f3755;
 }
 
+.title_signin{
+    font-size: 30px;
+    padding-left: 30px;
+    color: rgb(117, 115, 115);
+}
+
 .row{
     margin-right: 0px !important;
 }
@@ -143,8 +162,9 @@
 .col_flex{
     display: flex;
     justify-content: flex-end;
-    padding: 0px !important;
-    align-items: center;
+    padding-right: 0px !important;
+    align-items: flex-start;
+    
 }
 
 .body_features div{
@@ -152,7 +172,7 @@
     flex-direction: column;
     align-items: center !important;
     margin-top: 10px;
-    height: calc(100vh - 64px);
+    z-index: 50;
 }
 
 .div_emergent{
@@ -198,6 +218,14 @@
     align-self: center;
 }
 
+.center_prof{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 20px;
+    margin-bottom: 50px;
+}
+
 @keyframes rotate {from {transform: rotate(0deg);}
     to {transform: rotate(360deg);}}
 
@@ -216,7 +244,3 @@
     padding: 0 !important;
 }
 
-::-webkit-scrollbar{
-    display: none;
-    scroll-behavior: smooth;
-}
