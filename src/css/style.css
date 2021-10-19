@@ -136,6 +136,12 @@
     padding: 0px 10px;
 }
 
+.text_signin{
+    padding: 0px 20px;
+    margin-top: 20px;
+    text-align: justify;
+}
+
 .text_load{
     padding: 10px;
 }
@@ -146,9 +152,11 @@
 }
 
 .title_signin{
-    font-size: 30px;
-    padding-left: 30px;
-    color: rgb(117, 115, 115);
+    font-size: 25px;
+    padding: 20px 20px;
+    text-align: center;
+    color: rgb(146, 145, 145);
+    font-family: Pacifico;
 }
 
 .row{
