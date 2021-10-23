@@ -1,7 +1,6 @@
 import "../css/style.css";
 
 import React from "react";
-import Header from "./Header";
 import Content from "../components/Content";
 
 export default class Page extends React.Component{
@@ -16,7 +15,7 @@ export default class Page extends React.Component{
     render(){
         return(
             <div className="content_main">
-                <Header />
+                
                 <Content />
                 <footer className="content_footer">
 

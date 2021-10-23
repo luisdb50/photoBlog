@@ -1,11 +1,16 @@
 import img_logo from "../img/logo.png"
 
-import React from "react";
 import { Nav, Navbar } from "react-bootstrap";
 
 
 export default function Header(props) {
-    
+    let img;
+
+    if(props.user){
+        img = props.user.photoURL;
+    } else {
+        img = "";
+    }
 
     return(
         <header className="content_header">
@@ -24,7 +29,12 @@ export default function Header(props) {
                 
                 <Navbar.Collapse className="justify-content-end">
                     <Nav className="nav_links">
-                        <Nav.Link href="#home">Acceder</Nav.Link>
+                        {props.login === false
+                            ? <Nav.Link href="#login">Acceder</Nav.Link>
+                            : <img className="img_prof2" 
+                                src={img} 
+                                alt="profile"/>
+                        }
                         <Nav.Link href="#home">Inicio</Nav.Link>
                         <Nav.Link href="#link">Galeria</Nav.Link>
                     </Nav>

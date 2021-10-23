@@ -46,6 +46,10 @@
     
 }
 
+.content_upload{
+    margin-top: 100px;
+}
+
 .body_about{
     height: calc(100vh - 64px);
 }
@@ -82,6 +86,13 @@
 
 .img_prof{
     width: 20vw;
+    border-radius: 360px;
+    border: solid rgb(143, 143, 143);
+}
+
+.img_prof2{
+    width: 20%;
+    margin-right: 10px;
     border-radius: 360px;
     border: solid rgb(143, 143, 143);
 }
