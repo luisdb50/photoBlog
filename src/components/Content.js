@@ -223,9 +223,7 @@ export default function Content(){
 
         
         return(
-            <Container className="">
-                <FileUpload/>
-            </Container>
+            <FileUpload/>
         );
     }
 
