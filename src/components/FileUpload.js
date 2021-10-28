@@ -1,5 +1,5 @@
 import { Col, Row } from "react-bootstrap";
-import { getStorage, getDownloadURL ,ref, uploadBytesResumable } from "firebase/storage";
+import { getStorage, getDownloadURL ,ref, uploadBytesResumable, listAll } from "firebase/storage";
 import { collection, addDoc , serverTimestamp, getFirestore } from "firebase/firestore";
 import { getDocs, orderBy, query, onSnapshot } from "firebase/firestore";
 import { useEffect, useState } from "react";
@@ -41,28 +41,23 @@ export function FileUpload(){
         }
     }
 
-    async function queryImages(){
-        let i = 0;
+
+    function queryImages(){
         const q = query(collection( getFirestore(), 'files' ), orderBy("createdAt"));
         onSnapshot(q, (querySnapshot)=>{
-            querySnapshot.forEach(doc =>{
-                console.log(doc.data().path);
-                getDownloadURL(ref( getStorage(), doc.data().path))
-                .then((url) => {
-                    i++;
-                    axios.get(url).then(() =>{
-                        saveDataQuery(url);
-                        console.log("===" + i);  
-                        console.log(doc.data().path);                    
-                    })
-                });
+            querySnapshot.forEach(async value =>{
+                console.log(value.data().path);
+                await getDownloadURL(ref( getStorage(), value.data().path))
+                    .then( url => {                  
+                        elements.push(url);
+                        setResult(elements.slice())
+                    });
+                console.log("Pase 1 vuelta")
+                
             })
         })
     }
 
-    function peticion(url, doc){
-
-    }
 
     /*
     async function queryImages(){ 
@@ -83,11 +78,6 @@ export function FileUpload(){
     }
     */ 
 
-    function saveDataQuery(url){
-        elements.push(url);
-        setResult(elements.slice())
-    }
-
     return(
         <div className="content_upload">
             <Row>
@@ -102,6 +92,7 @@ export function FileUpload(){
                             />
                         )}
                     </div>
+                    
                 </Col>
             </Row>
             <br/>
@@ -110,3 +101,4 @@ export function FileUpload(){
         </div>
     );
 }
+
